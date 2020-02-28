@@ -1,0 +1,8 @@
+config_configuration#:#Konfiguration
+config_configuration_saved#:#Konfiguration gespeichert
+config_save#:#Speichern
+config_local_users_only#:#Nur lokale Benutzer
+config_threshold_in_days#:#Deaktivierung nach Inaktivität (in Tagen)
+config_days_warning#:#Benachrichtigung vor Deaktivierung (in Tagen)
+config_notification_emails#:#Zusätzliche Benachrichtigung bei Deaktivierung
+config_notification_emails_info#:#Kommaseparierte Email-Adressen
