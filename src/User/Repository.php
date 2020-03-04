@@ -67,7 +67,8 @@ class Repository
                 OR (u.last_login IS NULL AND u.create_date <= ' . $this->dic->database()->quote($date_threshold_string, 'date') . '
                     AND u.create_date > ' . $this->dic->database()->quote($date_max_string, 'date') . '))
             AND u.active = 1 ' . '
-            AND u.usr_id NOT IN (6,13) ' .
+            AND u.usr_id NOT IN (6,13)  ' . '
+            AND u.time_limit_unlimited = 1 ' .
             $this->getAuthModeWhere();
 
         $users = [];
@@ -93,7 +94,8 @@ class Repository
             WHERE (u.last_login <= ' . $this->dic->database()->quote($date_threshold_string, 'date') . '
                 OR (u.last_login IS NULL AND u.create_date <= ' . $this->dic->database()->quote($date_threshold_string, 'date') . '))
             AND u.active = 1 ' . '
-            AND u.usr_id NOT IN (6,13) ' .
+            AND u.usr_id NOT IN (6,13) ' . '
+            AND u.time_limit_unlimited = 1 ' .
             $this->getAuthModeWhere();
 
         $users = [];
