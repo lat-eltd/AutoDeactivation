@@ -32,7 +32,11 @@ class LastNotifiedRepository
     public function userNotified(int $user_id)
     {
         /** @var LastNotified $last_notified */
-        $last_notified = LastNotified::findOrGetInstance($user_id);
+        $last_notified = LastNotified::where(['user_id' => $user_id])->first();
+        if (is_null($last_notified)) {
+            $last_notified = new LastNotified();
+            $last_notified->setUserId($user_id);
+        }
         $last_notified->setDate(new ilDate(time(), IL_CAL_UNIX));
         $last_notified->store();
     }

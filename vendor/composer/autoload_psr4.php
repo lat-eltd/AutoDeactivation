@@ -8,7 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'srag\\RemovePluginDataConfirm\\AutoDeactivation\\' => array($vendorDir . '/srag/removeplugindataconfirm/src'),
     'srag\\Plugins\\AutoDeactivation\\' => array($baseDir . '/src'),
-    'srag\\Notifications4Plugin\\AutoDeactivation\\' => array($vendorDir . '/srag/notifications4plugin/src'),
+    'srag\\Notifications4Plugin\\' => array($vendorDir . '/srag/notifications4plugin/src'),
     'srag\\LibrariesNamespaceChanger\\' => array($vendorDir . '/srag/librariesnamespacechanger/src'),
     'srag\\DIC\\AutoDeactivation\\' => array($vendorDir . '/srag/dic/src'),
     'srag\\CustomInputGUIs\\AutoDeactivation\\' => array($vendorDir . '/srag/custominputguis/src'),

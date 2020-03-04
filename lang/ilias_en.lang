@@ -4,5 +4,8 @@ config_save#:#Save
 config_local_users_only#:#Local users only
 config_threshold_in_days#:#Deactivation after inactivity (in days)
 config_days_warning#:#Notification before deactivation (in days)
-config_notification_emails#:#Additional notification on deactivation
+config_notification_emails#:#Additional notification on deactivation (BCC)
 config_notification_emails_info#:#Comma-separated email addresses
+config_notifications_warning#:#Warning Notification
+config_notifications_on_deactivation#:#Deactivation Notification
+job_description#:#Deactivates user accounts after a certain timespan of inactivity. The users will be notified before the deactivation. The used parameters can be defined in the plugin configuration.

@@ -11,7 +11,7 @@ class ComposerStaticInit856153adbee1debe41f2cfd53cd4af3b
         array (
             'srag\\RemovePluginDataConfirm\\AutoDeactivation\\' => 46,
             'srag\\Plugins\\AutoDeactivation\\' => 30,
-            'srag\\Notifications4Plugin\\AutoDeactivation\\' => 43,
+            'srag\\Notifications4Plugin\\' => 26,
             'srag\\LibrariesNamespaceChanger\\' => 31,
             'srag\\DIC\\AutoDeactivation\\' => 26,
             'srag\\CustomInputGUIs\\AutoDeactivation\\' => 38,
@@ -28,7 +28,7 @@ class ComposerStaticInit856153adbee1debe41f2cfd53cd4af3b
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
-        'srag\\Notifications4Plugin\\AutoDeactivation\\' => 
+        'srag\\Notifications4Plugin\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/notifications4plugin/src',
         ),
