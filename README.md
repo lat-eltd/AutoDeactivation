@@ -1,36 +1,36 @@
-This is an OpenSource project by studer + raimann ag, CH-Burgdorf (https://studer-raimann.ch)
+# AutoDeactivation
 
-## Description
-See in [doc/DESCRIPTION.md](./doc/DESCRIPTION.md)
+This plugin introduces a cron job which deactivates unused user accounts, sending notification mails before and when doing so. The inactivity is measured by a certain timespan since the last login, or since the creation date if no login was ever performed. All parameters are configurable.
 
-## Documentation
-See in [doc/DOCUMENTATION.md](./doc/DOCUMENTATION.md)
+## Getting Started
 
-## Installation
+### Requirements
 
-### Install AutoDeactivation-Plugin
+* ILIAS 5.3.x / 5.4.x
+* PHP >=7.0
+
+### Installing
+
 Start at your ILIAS root directory
 ```bash
 mkdir -p Customizing/global/plugins/Services/Cron/CronHook
 cd Customizing/global/plugins/Services/Cron/CronHook
-git clone https://github.com/studer-raimann/AutoDeactivation.git AutoDeactivation
+git clone https://github.com/studer-raimann/AutoDeactivation.git
 ```
 Update, activate and config the plugin in the ILIAS Plugin Administration
 
-### Requirements
-* ILIAS 5.4
-* PHP >=7.0
+## Authors
 
-### Adjustment suggestions
-* External users can report suggestions and bugs at https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_
-* Adjustment suggestions by pull requests via github
-* Customer of studer + raimann ag: 
-	* Adjustment suggestions which are not yet worked out in detail by Jira tasks under https://jira.studer-raimann.ch/projects/
-	* Bug reports under https://jira.studer-raimann.ch/projects/
+This is an OpenSource project by studer + raimann ag (https://studer-raimann.ch)
+
+## License
+
+This project is licensed under the GPL v3 License 
 
 ### ILIAS Plugin SLA
-Wir lieben und leben die Philosophie von Open Source Software! Die meisten unserer Entwicklungen, welche wir im Kundenauftrag oder in Eigenleistung entwickeln, stellen wir öffentlich allen Interessierten kostenlos unter https://github.com/studer-raimann zur Verfügung.
 
-Setzen Sie eines unserer Plugins professionell ein? Sichern Sie sich mittels SLA die termingerechte Verfügbarkeit dieses Plugins auch für die kommenden ILIAS Versionen. Informieren Sie sich hierzu unter https://studer-raimann.ch/produkte/ilias-plugins/plugin-sla.
+We love and live the philosophy of Open Source Software! Most of our developments, which we develop on behalf of customers or on our own account, are publicly available free of charge to all interested parties at https://github.com/studer-raimann.
 
-Bitte beachten Sie, dass wir nur Institutionen, welche ein SLA abschliessen Unterstützung und Release-Pflege garantieren.
+Do you use one of our plugins professionally? Secure the timely availability of this plugin for the upcoming ILIAS versions via SLA. Please inform yourself under https://studer-raimann.ch/produkte/ilias-plugins/plugin-sla.
+
+Please note that we only guarantee support and release maintenance for institutions that sign a SLA.
