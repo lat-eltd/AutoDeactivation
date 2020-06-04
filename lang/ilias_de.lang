@@ -1,0 +1,11 @@
+config_configuration#:#Konfiguration
+config_configuration_saved#:#Konfiguration gespeichert
+config_save#:#Speichern
+config_local_users_only#:#Nur lokale Benutzer
+config_threshold_in_days#:#Deaktivierung nach Inaktivität (in Tagen)
+config_days_warning#:#Benachrichtigung vor Deaktivierung (in Tagen)
+config_notification_emails#:#Zusätzliche Benachrichtigung bei Deaktivierung (BCC)
+config_notification_emails_info#:#Kommaseparierte Email-Adressen
+config_notifications_warning#:#Warnungsbenachrichtigung
+config_notifications_on_deactivation#:#Deaktivierungsbenachrichtigung
+job_description#:#Deaktiviert Benutzer nach einer bestimmten Dauer der Inaktivität. Die Benutzer werden vor der Deaktivierung per Email benachrichtigt. Die verschiedenen Parameter können via Pluginkonfiguration definiert werden.
