@@ -1,5 +1,96 @@
 # Changelog
 
+## [5.7.5]
+- Twig PHP 7.4 patch
+
+## [5.7.4]
+- Twig PHP 7.4 patch
+
+## [5.7.3]
+- Twig PHP 7.4 patch
+
+## [5.7.2]
+- Twig PHP 7.4 patch
+
+## [5.7.1]
+- Not use GeneratePluginReadme
+
+## [5.7.0]
+- ILIAS 7 support
+- Remove ILIAS 5.4 support
+
+## [5.6.9]
+- Change utils url
+
+## [5.6.8]
+- Update urls
+
+## [5.6.7]
+- Ignore not supported languages
+
+## [5.6.6]
+- Ignore not supported languages
+
+## [5.6.5]
+- Update readme
+
+## [5.6.4]
+- Update project url
+
+## [5.6.3]
+- Add require compose in ctrl entry classes
+
+## [5.6.2]
+- Fix composer 2
+- Move doc/DESCRIPTION.md to src/LONG_DESCRIPTION.md
+
+## [5.6.1]
+- Generate readme
+
+## [5.6.0]
+- Generate readme
+
+## [5.5.6]
+- Move LibraryLanguageInstaller to separate package
+
+## [5.5.5]
+- Update `migrateFromOldGlobalPlugin`
+
+## [5.5.4]
+- Fix ILIAS 6 internal mail
+
+## [5.5.3]
+- Fix
+
+## [5.5.2]
+- Fix escaped html line breaks
+
+## [5.5.1]
+- Fix
+
+## [5.5.0]
+- New form
+- ILIAS 6 support
+- Remove ILIAS 5.3 support
+
+## [5.4.4]
+- Fixed exceptions in internal mail sender
+
+## [5.4.3]
+- Fix
+
+## [5.4.2]
+- Fix
+
+## [5.4.1]
+- Fix
+
+## [5.4.0]
+- Use `srag/datatable`
+
+## [5.3.0]
+- Min. PHP 7.2
+
 ## [5.2.1]
 - Fix multiple notification tabs
 

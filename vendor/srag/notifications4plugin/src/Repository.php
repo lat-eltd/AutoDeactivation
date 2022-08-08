@@ -3,31 +3,55 @@
 namespace srag\Notifications4Plugin\AutoDeactivation;
 
 use LogicException;
+use srag\DataTableUI\AutoDeactivation\Implementation\Utils\DataTableUITrait;
 use srag\DIC\AutoDeactivation\DICTrait;
 use srag\DIC\AutoDeactivation\Plugin\PluginInterface;
-use srag\DIC\AutoDeactivation\Util\LibraryLanguageInstaller;
+use srag\LibraryLanguageInstaller\AutoDeactivation\LibraryLanguageInstaller;
 use srag\Notifications4Plugin\AutoDeactivation\Notification\Repository as NotificationsRepository;
 use srag\Notifications4Plugin\AutoDeactivation\Notification\RepositoryInterface as NotificationsRepositoryInterface;
 use srag\Notifications4Plugin\AutoDeactivation\Parser\Repository as ParserRepository;
 use srag\Notifications4Plugin\AutoDeactivation\Parser\RepositoryInterface as ParserRepositoryInterface;
 use srag\Notifications4Plugin\AutoDeactivation\Sender\Repository as SenderRepository;
 use srag\Notifications4Plugin\AutoDeactivation\Sender\RepositoryInterface as SenderRepositoryInterface;
+use srag\Notifications4Plugin\AutoDeactivation\Utils\Notifications4PluginTrait;
 
 /**
  * Class Repository
  *
  * @package srag\Notifications4Plugin\AutoDeactivation
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 final class Repository implements RepositoryInterface
 {
 
     use DICTrait;
+    use Notifications4PluginTrait;
+    use DataTableUITrait;
+
     /**
      * @var RepositoryInterface|null
      */
     protected static $instance = null;
+    /**
+     * @var array
+     */
+    protected $placeholder_types;
+    /**
+     * @var PluginInterface
+     */
+    protected $plugin;
+    /**
+     * @var string
+     */
+    protected $table_name_prefix = "";
+
+
+    /**
+     * Repository constructor
+     */
+    private function __construct()
+    {
+
+    }
 
 
     /**
@@ -44,32 +68,9 @@ final class Repository implements RepositoryInterface
 
 
     /**
-     * @var string
-     */
-    protected $table_name_prefix = "";
-    /**
-     * @var PluginInterface
-     */
-    protected $plugin;
-    /**
-     * @var array
-     */
-    protected $placeholder_types;
-
-
-    /**
-     * Repository constructor
-     */
-    private function __construct()
-    {
-
-    }
-
-
-    /**
      * @inheritDoc
      */
-    public function dropTables()/*: void*/
+    public function dropTables() : void
     {
         $this->notifications()->dropTables();
         $this->parser()->dropTables();
@@ -119,17 +120,19 @@ final class Repository implements RepositoryInterface
     /**
      * @inheritDoc
      */
-    public function installLanguages()/*:void*/
+    public function installLanguages() : void
     {
         LibraryLanguageInstaller::getInstance()->withPlugin($this->getPlugin())->withLibraryLanguageDirectory(__DIR__
             . "/../lang")->updateLanguages();
+
+        self::dataTableUI()->installLanguages($this->plugin);
     }
 
 
     /**
      * @inheritDoc
      */
-    public function installTables()/*:void*/
+    public function installTables() : void
     {
         $this->notifications()->installTables();
         $this->parser()->installTables();

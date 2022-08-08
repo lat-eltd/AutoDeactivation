@@ -1,347 +1,565 @@
-[
-    {
-        "name": "srag/activerecordconfig",
-        "version": "v0.19.6",
-        "version_normalized": "0.19.6.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/studer-raimann/ActiveRecordConfig.git",
-            "reference": "37c29f8f8f7e8972d5f42aabea133bff18388a18"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/ActiveRecordConfig/zipball/37c29f8f8f7e8972d5f42aabea133bff18388a18",
-            "reference": "37c29f8f8f7e8972d5f42aabea133bff18388a18",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=7.0",
-            "srag/custominputguis": ">=0.1.0",
-            "srag/dic": ">=0.1.0"
-        },
-        "time": "2020-02-21T09:47:44+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "srag\\ActiveRecordConfig\\AutoDeactivation\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "GPL-3.0-only"
-        ],
-        "authors": [
-            {
-                "name": "studer + raimann ag - Team Custom 1",
-                "email": "support-custom1@studer-raimann.ch",
-                "homepage": "https://studer-raimann.ch",
-                "role": "Developer"
-            }
-        ],
-        "description": "Simple ActiveRecord config for ILIAS plugins",
-        "homepage": "https://github.com/studer-raimann/ActiveRecordConfig",
-        "keywords": [
-            "ILIAS",
-            "activerecord",
-            "config"
-        ]
-    },
-    {
-        "name": "srag/custominputguis",
-        "version": "v0.33.1",
-        "version_normalized": "0.33.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/studer-raimann/CustomInputGUIs.git",
-            "reference": "96323d791f1fd0db256ab3a3685549073b6e70ee"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/96323d791f1fd0db256ab3a3685549073b6e70ee",
-            "reference": "96323d791f1fd0db256ab3a3685549073b6e70ee",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=7.0",
-            "srag/dic": ">=0.1.0"
-        },
-        "time": "2020-03-03T11:18:27+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "srag\\CustomInputGUIs\\AutoDeactivation\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "GPL-3.0-only"
-        ],
-        "authors": [
-            {
-                "name": "studer + raimann ag - Team Custom 1",
-                "email": "support-custom1@studer-raimann.ch",
-                "homepage": "https://studer-raimann.ch",
-                "role": "Developer"
-            }
-        ],
-        "description": "Custom Input-GUI's",
-        "homepage": "https://github.com/studer-raimann/CustomInputGUIs",
-        "keywords": [
-            "ILIAS",
-            "PropertyForm",
-            "gui",
-            "input",
-            "table"
-        ]
-    },
-    {
-        "name": "srag/dic",
-        "version": "v0.20.3",
-        "version_normalized": "0.20.3.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/studer-raimann/DIC.git",
-            "reference": "3c8c3a3ae484ad539ff54c1b2bd0fdd49bc4ecb8"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/3c8c3a3ae484ad539ff54c1b2bd0fdd49bc4ecb8",
-            "reference": "3c8c3a3ae484ad539ff54c1b2bd0fdd49bc4ecb8",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=7.0"
-        },
-        "time": "2020-02-28T13:10:35+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "srag\\DIC\\AutoDeactivation\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "GPL-3.0-only"
-        ],
-        "authors": [
-            {
-                "name": "studer + raimann ag - Team Custom 1",
-                "email": "support-custom1@studer-raimann.ch",
-                "homepage": "https://studer-raimann.ch",
-                "role": "Developer"
-            }
-        ],
-        "description": "Use all ILIAS globals in your class",
-        "homepage": "https://github.com/studer-raimann/DIC",
-        "keywords": [
-            "ILIAS",
-            "dic",
-            "globals",
-            "trait"
-        ]
-    },
-    {
-        "name": "srag/librariesnamespacechanger",
-        "version": "v0.7.0",
-        "version_normalized": "0.7.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/studer-raimann/LibrariesNamespaceChanger.git",
-            "reference": "80afdd6f1d0690004e87edadcf120fb6d0740ebb"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/LibrariesNamespaceChanger/zipball/80afdd6f1d0690004e87edadcf120fb6d0740ebb",
-            "reference": "80afdd6f1d0690004e87edadcf120fb6d0740ebb",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.6"
-        },
-        "time": "2019-12-11T08:38:08+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "srag\\LibrariesNamespaceChanger\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "GPL-3.0-only"
-        ],
-        "authors": [
-            {
-                "name": "studer + raimann ag - Team Custom 1",
-                "email": "support-custom1@studer-raimann.ch",
-                "homepage": "https://studer-raimann.ch",
-                "role": "Developer"
-            }
-        ],
-        "description": "Change namespace of libraries to plugin namespace",
-        "homepage": "https://github.com/studer-raimann/LibrariesNamespaceChanger",
-        "keywords": [
-            "ILIAS",
-            "libraries"
-        ]
-    },
-    {
-        "name": "srag/notifications4plugin",
-        "version": "v5.2.1",
-        "version_normalized": "5.2.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/studer-raimann/Notifications4Plugin.git",
-            "reference": "4a4c5f8c2a33f0585d9db0d4093e258775dd5198"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/Notifications4Plugin/zipball/4a4c5f8c2a33f0585d9db0d4093e258775dd5198",
-            "reference": "4a4c5f8c2a33f0585d9db0d4093e258775dd5198",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=7.0",
-            "srag/custominputguis": ">=0.1.0",
-            "srag/dic": ">=0.1.0",
-            "twig/twig": "1.18.0"
-        },
-        "time": "2020-03-04T09:07:15+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "srag\\Notifications4Plugin\\AutoDeactivation\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "GPL-3.0-only"
-        ],
-        "authors": [
-            {
-                "name": "studer + raimann ag - Team Custom 1",
-                "email": "support-custom1@studer-raimann.ch",
-                "homepage": "https://studer-raimann.ch",
-                "role": "Developer"
-            }
-        ],
-        "description": "This library offers a quick and easy way to create and send notifications in any language. The notifications are usually configured in the config screen of Notifications4Plugin and can then be sent for instance as an email by other plugins dynamic",
-        "homepage": "https://github.com/studer-raimann/Notifications4Plugin",
-        "keywords": [
-            "ILIAS",
-            "notifications"
-        ]
-    },
-    {
-        "name": "srag/removeplugindataconfirm",
-        "version": "v0.6.3",
-        "version_normalized": "0.6.3.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/studer-raimann/RemovePluginDataConfirm.git",
-            "reference": "d3faed97ec4e5d9a20bf2c8a80cc395997caf591"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/RemovePluginDataConfirm/zipball/d3faed97ec4e5d9a20bf2c8a80cc395997caf591",
-            "reference": "d3faed97ec4e5d9a20bf2c8a80cc395997caf591",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=7.0",
-            "srag/dic": ">=0.1.0"
-        },
-        "time": "2020-01-21T08:23:18+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "srag\\RemovePluginDataConfirm\\AutoDeactivation\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "GPL-3.0-only"
-        ],
-        "authors": [
-            {
-                "name": "studer + raimann ag - Team Custom 1",
-                "email": "support-custom1@studer-raimann.ch",
-                "homepage": "https://studer-raimann.ch",
-                "role": "Developer"
-            }
-        ],
-        "description": "Demand if plugin data should be removed on uninstall",
-        "homepage": "https://github.com/studer-raimann/RemovePluginDataConfirm",
-        "keywords": [
-            "ILIAS",
-            "confirm",
-            "data",
-            "plugin",
-            "uninstall"
-        ]
-    },
-    {
-        "name": "twig/twig",
-        "version": "v1.18.0",
-        "version_normalized": "1.18.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/twigphp/Twig.git",
-            "reference": "4cf7464348e7f9893a93f7096a90b73722be99cf"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/twigphp/Twig/zipball/4cf7464348e7f9893a93f7096a90b73722be99cf",
-            "reference": "4cf7464348e7f9893a93f7096a90b73722be99cf",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.2.4"
-        },
-        "time": "2015-01-25T17:32:08+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.18-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Twig_": "lib/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com",
-                "homepage": "http://fabien.potencier.org",
-                "role": "Lead Developer"
+{
+    "packages": [
+        {
+            "name": "srag/activerecordconfig",
+            "version": "0.21.1",
+            "version_normalized": "0.21.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fluxapps/ActiveRecordConfig.git",
+                "reference": "a717d2f31140a78e71517a6b8d3972e107f1eacb"
             },
-            {
-                "name": "Armin Ronacher",
-                "email": "armin.ronacher@active-4.com",
-                "role": "Project Founder"
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fluxapps/ActiveRecordConfig/zipball/a717d2f31140a78e71517a6b8d3972e107f1eacb",
+                "reference": "a717d2f31140a78e71517a6b8d3972e107f1eacb",
+                "shasum": ""
             },
-            {
-                "name": "Twig Team",
-                "homepage": "http://twig.sensiolabs.org/contributors",
-                "role": "Contributors"
-            }
-        ],
-        "description": "Twig, the flexible, fast, and secure template language for PHP",
-        "homepage": "http://twig.sensiolabs.org",
-        "keywords": [
-            "templating"
-        ]
-    }
-]
+            "require": {
+                "php": ">=7.2",
+                "srag/custominputguis": ">=0.1.0",
+                "srag/dic": ">=0.1.0"
+            },
+            "require-dev": {
+                "srag/generateplugininfoshelper": ">=0.1.0"
+            },
+            "time": "2021-07-20T08:32:29+00:00",
+            "type": "library",
+            "extra": {
+                "ilias_plugin": {
+                    "ilias_min_version": "6.0",
+                    "ilias_max_version": "7.999"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "srag\\ActiveRecordConfig\\AutoDeactivation\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "fluxlabs",
+                    "email": "support@fluxlabs.ch",
+                    "homepage": "https://fluxlabs.ch",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Simple ActiveRecord config for ILIAS plugins",
+            "homepage": "https://github.com/fluxapps/ActiveRecordConfig",
+            "keywords": [
+                "ILIAS",
+                "activerecord",
+                "config"
+            ],
+            "support": {
+                "source": "https://github.com/fluxapps/ActiveRecordConfig/tree/v0.21.1"
+            },
+            "install-path": "../srag/activerecordconfig"
+        },
+        {
+            "name": "srag/custominputguis",
+            "version": "0.43.2",
+            "version_normalized": "0.43.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fluxapps/CustomInputGUIs.git",
+                "reference": "547ac0aaf7056848aac936b965e8847deb1cf415"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fluxapps/CustomInputGUIs/zipball/547ac0aaf7056848aac936b965e8847deb1cf415",
+                "reference": "547ac0aaf7056848aac936b965e8847deb1cf415",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2",
+                "srag/dic": ">=0.1.0"
+            },
+            "require-dev": {
+                "srag/generateplugininfoshelper": ">=0.1.0"
+            },
+            "time": "2021-08-31T08:50:12+00:00",
+            "type": "library",
+            "extra": {
+                "ilias_plugin": {
+                    "ilias_min_version": "6.0",
+                    "ilias_max_version": "7.999"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "srag\\CustomInputGUIs\\AutoDeactivation\\": "src/"
+                },
+                "classmap": [
+                    "src/MultiSelectSearchNewInputGUI/class.ObjectChildrenAjaxAutoCompleteCtrl.php",
+                    "src/MultiSelectSearchNewInputGUI/class.ObjectsAjaxAutoCompleteCtrl.php",
+                    "src/MultiSelectSearchNewInputGUI/class.OrgUnitAjaxAutoCompleteCtrl.php",
+                    "src/MultiSelectSearchNewInputGUI/class.UsersAjaxAutoCompleteCtrl.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "fluxlabs",
+                    "email": "support@fluxlabs.ch",
+                    "homepage": "https://fluxlabs.ch",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Custom Input-GUI's",
+            "homepage": "https://github.com/fluxapps/CustomInputGUIs",
+            "keywords": [
+                "ILIAS",
+                "PropertyForm",
+                "gui",
+                "input",
+                "table"
+            ],
+            "support": {
+                "source": "https://github.com/fluxapps/CustomInputGUIs/tree/v0.43.2"
+            },
+            "install-path": "../srag/custominputguis"
+        },
+        {
+            "name": "srag/datatable",
+            "version": "0.32.1",
+            "version_normalized": "0.32.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fluxapps/DataTableUI.git",
+                "reference": "30d55b6070a77aac727c6538349eee80f4223623"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fluxapps/DataTableUI/zipball/30d55b6070a77aac727c6538349eee80f4223623",
+                "reference": "30d55b6070a77aac727c6538349eee80f4223623",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2",
+                "srag/custominputguis": ">=0.1.0",
+                "srag/dic": ">=0.1.0",
+                "srag/librarylanguageinstaller": ">=0.1.0"
+            },
+            "require-dev": {
+                "srag/generateplugininfoshelper": ">=0.1.0"
+            },
+            "time": "2021-07-20T08:32:15+00:00",
+            "type": "library",
+            "extra": {
+                "ilias_plugin": {
+                    "ilias_min_version": "6.0",
+                    "ilias_max_version": "7.999"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "srag\\DataTableUI\\AutoDeactivation\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "fluxlabs",
+                    "email": "support@fluxlabs.ch",
+                    "homepage": "https://fluxlabs.ch",
+                    "role": "Developer"
+                }
+            ],
+            "description": "ILIAS Data Table UI Component",
+            "homepage": "https://github.com/fluxapps/DataTableUI",
+            "keywords": [
+                "ILIAS",
+                "table",
+                "ui"
+            ],
+            "support": {
+                "source": "https://github.com/fluxapps/DataTableUI/tree/v0.32.1"
+            },
+            "install-path": "../srag/datatable"
+        },
+        {
+            "name": "srag/dic",
+            "version": "0.34.1",
+            "version_normalized": "0.34.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fluxapps/DIC.git",
+                "reference": "d07315f7303e82982f78cdecce5f5aa83205a9e4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fluxapps/DIC/zipball/d07315f7303e82982f78cdecce5f5aa83205a9e4",
+                "reference": "d07315f7303e82982f78cdecce5f5aa83205a9e4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "srag/generateplugininfoshelper": ">=0.1.0"
+            },
+            "time": "2022-03-17T09:36:38+00:00",
+            "type": "library",
+            "extra": {
+                "ilias_plugin": {
+                    "ilias_min_version": "6.0",
+                    "ilias_max_version": "7.999"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "srag\\DIC\\AutoDeactivation\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "fluxlabs",
+                    "email": "support@fluxlabs.ch",
+                    "homepage": "https://fluxlabs.ch",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Use all ILIAS globals in your class",
+            "homepage": "https://github.com/fluxapps/DIC",
+            "keywords": [
+                "ILIAS",
+                "dic",
+                "globals",
+                "trait"
+            ],
+            "support": {
+                "source": "https://github.com/fluxapps/DIC/tree/v0.34.1"
+            },
+            "install-path": "../srag/dic"
+        },
+        {
+            "name": "srag/librariesnamespacechanger",
+            "version": "0.16.1",
+            "version_normalized": "0.16.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fluxapps/LibrariesNamespaceChanger.git",
+                "reference": "186c543c88544ecf3907767e1645d4faf37dede0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fluxapps/LibrariesNamespaceChanger/zipball/186c543c88544ecf3907767e1645d4faf37dede0",
+                "reference": "186c543c88544ecf3907767e1645d4faf37dede0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "srag/generateplugininfoshelper": ">=0.1.0"
+            },
+            "time": "2021-07-20T08:31:26+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "srag\\LibrariesNamespaceChanger\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "fluxlabs",
+                    "email": "support@fluxlabs.ch",
+                    "homepage": "https://fluxlabs.ch",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Change namespace of libraries to plugin namespace",
+            "homepage": "https://github.com/fluxapps/LibrariesNamespaceChanger",
+            "keywords": [
+                "changer",
+                "libraries",
+                "namespace"
+            ],
+            "support": {
+                "source": "https://github.com/fluxapps/LibrariesNamespaceChanger/tree/v0.16.1"
+            },
+            "abandoned": "https://github.com/flux-caps/flux-namespace-changer",
+            "install-path": "../srag/librariesnamespacechanger"
+        },
+        {
+            "name": "srag/librarylanguageinstaller",
+            "version": "1.2.1",
+            "version_normalized": "1.2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fluxapps/LibraryLanguageInstaller.git",
+                "reference": "7c0e146d92f66368e9c756bc89e257fc60ea3e59"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fluxapps/LibraryLanguageInstaller/zipball/7c0e146d92f66368e9c756bc89e257fc60ea3e59",
+                "reference": "7c0e146d92f66368e9c756bc89e257fc60ea3e59",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2",
+                "srag/dic": ">=0.1.0"
+            },
+            "require-dev": {
+                "srag/generateplugininfoshelper": ">=0.1.0"
+            },
+            "time": "2021-07-20T08:31:18+00:00",
+            "type": "library",
+            "extra": {
+                "ilias_plugin": {
+                    "ilias_min_version": "6.0",
+                    "ilias_max_version": "7.999"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "srag\\LibraryLanguageInstaller\\AutoDeactivation\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "fluxlabs",
+                    "email": "support@fluxlabs.ch",
+                    "homepage": "https://fluxlabs.ch",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Install additional and external lang files for a plugin",
+            "homepage": "https://github.com/fluxapps/LibraryLanguageInstaller",
+            "keywords": [
+                "ILIAS",
+                "installer",
+                "language",
+                "library"
+            ],
+            "support": {
+                "source": "https://github.com/fluxapps/LibraryLanguageInstaller/tree/v1.2.1"
+            },
+            "install-path": "../srag/librarylanguageinstaller"
+        },
+        {
+            "name": "srag/notifications4plugin",
+            "version": "5.7.5",
+            "version_normalized": "5.7.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fluxapps/Notifications4Plugin.git",
+                "reference": "b79b99e58b40a5794e9ba5c725fceaa6eae429db"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fluxapps/Notifications4Plugin/zipball/b79b99e58b40a5794e9ba5c725fceaa6eae429db",
+                "reference": "b79b99e58b40a5794e9ba5c725fceaa6eae429db",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2",
+                "srag/custominputguis": ">=0.1.0",
+                "srag/datatable": ">=0.1.0",
+                "srag/dic": ">=0.1.0",
+                "srag/librarylanguageinstaller": ">=0.1.0",
+                "twig/twig": "1.18.0"
+            },
+            "require-dev": {
+                "srag/generateplugininfoshelper": ">=0.1.0"
+            },
+            "time": "2022-03-17T09:41:51+00:00",
+            "type": "library",
+            "extra": {
+                "ilias_plugin": {
+                    "ilias_min_version": "6.0",
+                    "ilias_max_version": "7.999"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "srag\\Notifications4Plugin\\AutoDeactivation\\": "src/"
+                },
+                "classmap": [
+                    "src/Notification/class.NotificationsCtrl.php",
+                    "src/Notification/class.NotificationCtrl.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "fluxlabs",
+                    "email": "support@fluxlabs.ch",
+                    "homepage": "https://fluxlabs.ch",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This library offers a quick and easy way to create and send notifications in any language. The notifications are usually configured in the config screen of Notifications4Plugin and can then be sent for instance as an email by other plugins dynamic",
+            "homepage": "https://github.com/fluxapps/Notifications4Plugin",
+            "keywords": [
+                "ILIAS",
+                "notifications"
+            ],
+            "support": {
+                "source": "https://github.com/fluxapps/Notifications4Plugin/tree/v5.7.5"
+            },
+            "install-path": "../srag/notifications4plugin"
+        },
+        {
+            "name": "srag/removeplugindataconfirm",
+            "version": "0.8.1",
+            "version_normalized": "0.8.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fluxapps/RemovePluginDataConfirm.git",
+                "reference": "c2bdd6425e04edc3d49da36b0822ba2b33e21600"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fluxapps/RemovePluginDataConfirm/zipball/c2bdd6425e04edc3d49da36b0822ba2b33e21600",
+                "reference": "c2bdd6425e04edc3d49da36b0822ba2b33e21600",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2",
+                "srag/dic": ">=0.1.0",
+                "srag/librarylanguageinstaller": ">=0.1.0"
+            },
+            "require-dev": {
+                "srag/generateplugininfoshelper": ">=0.1.0"
+            },
+            "time": "2021-07-20T08:30:56+00:00",
+            "type": "library",
+            "extra": {
+                "ilias_plugin": {
+                    "ilias_min_version": "6.0",
+                    "ilias_max_version": "7.999"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "srag\\RemovePluginDataConfirm\\AutoDeactivation\\": "src/"
+                },
+                "classmap": [
+                    "src/class.RemovePluginDataConfirmCtrl.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "fluxlabs",
+                    "email": "support@fluxlabs.ch",
+                    "homepage": "https://fluxlabs.ch",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Demand if plugin data should be removed on uninstall",
+            "homepage": "https://github.com/fluxapps/RemovePluginDataConfirm",
+            "keywords": [
+                "ILIAS",
+                "confirm",
+                "data",
+                "plugin",
+                "uninstall"
+            ],
+            "support": {
+                "source": "https://github.com/fluxapps/RemovePluginDataConfirm/tree/v0.8.1"
+            },
+            "install-path": "../srag/removeplugindataconfirm"
+        },
+        {
+            "name": "twig/twig",
+            "version": "v1.18.0",
+            "version_normalized": "1.18.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twigphp/Twig.git",
+                "reference": "4cf7464348e7f9893a93f7096a90b73722be99cf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/4cf7464348e7f9893a93f7096a90b73722be99cf",
+                "reference": "4cf7464348e7f9893a93f7096a90b73722be99cf",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.4"
+            },
+            "time": "2015-01-25T17:32:08+00:00",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.18-dev"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "Twig_": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Armin Ronacher",
+                    "email": "armin.ronacher@active-4.com",
+                    "role": "Project Founder"
+                },
+                {
+                    "name": "Twig Team",
+                    "homepage": "http://twig.sensiolabs.org/contributors",
+                    "role": "Contributors"
+                }
+            ],
+            "description": "Twig, the flexible, fast, and secure template language for PHP",
+            "homepage": "http://twig.sensiolabs.org",
+            "keywords": [
+                "templating"
+            ],
+            "install-path": "../twig/twig"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}

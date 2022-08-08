@@ -2,12 +2,12 @@
 
 namespace srag\Notifications4Plugin\AutoDeactivation\Notification;
 
+use srag\DataTableUI\AutoDeactivation\Component\Settings\Settings;
+
 /**
  * Interface RepositoryInterface
  *
  * @package srag\Notifications4Plugin\AutoDeactivation\Notification
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 interface RepositoryInterface
 {
@@ -15,13 +15,13 @@ interface RepositoryInterface
     /**
      * @param NotificationInterface $notification
      */
-    public function deleteNotification(NotificationInterface $notification)/*: void*/ ;
+    public function deleteNotification(NotificationInterface $notification) : void;
 
 
     /**
      * @internal
      */
-    public function dropTables()/*: void*/ ;
+    public function dropTables() : void;
 
 
     /**
@@ -43,7 +43,7 @@ interface RepositoryInterface
      *
      * @return NotificationInterface|null
      */
-    public function getNotificationById(int $id)/*: ?NotificationInterface*/ ;
+    public function getNotificationById(int $id) : ?NotificationInterface;
 
 
     /**
@@ -51,18 +51,15 @@ interface RepositoryInterface
      *
      * @return NotificationInterface|null
      */
-    public function getNotificationByName(string $name)/*: ?NotificationInterface*/ ;
+    public function getNotificationByName(string $name) : ?NotificationInterface;
 
 
     /**
-     * @param string|null $sort_by
-     * @param string|null $sort_by_direction
-     * @param int|null    $limit_start
-     * @param int|null    $limit_end
+     * @param Settings|null $settings
      *
      * @return NotificationInterface[]
      */
-    public function getNotifications(string $sort_by = null, string $sort_by_direction = null, int $limit_start = null, int $limit_end = null) : array;
+    public function getNotifications(?Settings $settings = null) : array;
 
 
     /**
@@ -74,7 +71,7 @@ interface RepositoryInterface
     /**
      * @internal
      */
-    public function installTables()/*:void*/ ;
+    public function installTables() : void;
 
 
     /**
@@ -84,11 +81,11 @@ interface RepositoryInterface
      *
      * @deprecated
      */
-    public function migrateFromOldGlobalPlugin(string $name = null)/*: ?Notification*/ ;
+    public function migrateFromOldGlobalPlugin(string $name = null) : ?NotificationInterface;
 
 
     /**
      * @param NotificationInterface $notification
      */
-    public function storeNotification(NotificationInterface $notification)/*: void*/ ;
+    public function storeNotification(NotificationInterface $notification) : void;
 }

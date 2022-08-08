@@ -2,46 +2,36 @@
 
 namespace srag\CustomInputGUIs\AutoDeactivation\InputGUIWrapperUIInputComponent;
 
-use ILIAS\UI\Component\Input\Field\Input as InputInterface;
+use ilHiddenInputGUI;
+use ILIAS\UI\Component\Component;
 use ILIAS\UI\Implementation\Component\Input\Field\Input;
-use ILIAS\UI\Implementation\Component\Input\Field\Renderer as InputRenderer;
-use ILIAS\UI\Implementation\Render\ResourceRegistry;
 use ILIAS\UI\Implementation\Render\Template;
 use ILIAS\UI\Renderer as RendererInterface;
-use srag\DIC\AutoDeactivation\DICTrait;
 
 /**
  * Class Renderer
  *
  * @package srag\CustomInputGUIs\AutoDeactivation\InputGUIWrapperUIInputComponent
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class Renderer extends InputRenderer
+class Renderer extends AbstractRenderer
 {
 
-    use DICTrait;
-
-
     /**
      * @inheritDoc
      */
-    protected function getComponentInterfaceName() : array
+    public function render(Component $component, RendererInterface $default_renderer) : string
     {
-        return [
-            InputGUIWrapperUIInputComponent::class
-        ];
-    }
+        if ($component->getInput() instanceof ilHiddenInputGUI) {
+            return "";
+        }
 
-
-    /**
-     * @inheritDoc
-     */
-    protected function renderNoneGroupInput(InputInterface $input, RendererInterface $default_renderer) : string
-    {
         $input_tpl = $this->getTemplate("input.html", true, true);
 
-        $html = $this->renderInputFieldWithContext($input_tpl, $input, null, null);
+        if (self::version()->is7()) {
+            $html = $this->wrapInFormContext($component, $this->renderInputField($input_tpl, $component, "", $default_renderer));
+        } else {
+            $html = $this->renderInputFieldWithContext($default_renderer, $input_tpl, $component, null, null);
+        }
 
         return $html;
     }
@@ -50,38 +40,8 @@ class Renderer extends InputRenderer
     /**
      * @inheritDoc
      */
-    protected function renderInputField(Template $tpl, Input $input, $id) : string
+    protected function renderInputField(Template $tpl, Input $input, $id, RendererInterface $default_renderer) : string
     {
-        $tpl->setVariable("INPUT", self::output()->getHTML($input->getInput()));
-
-        return self::output()->getHTML($tpl);
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function registerResources(ResourceRegistry $registry)/*: void*/
-    {
-        parent::registerResources($registry);
-
-        $dir = __DIR__;
-        $dir = "./" . substr($dir, strpos($dir, "/Customizing/") + 1);
-
-        $registry->register($dir . "/css/InputGUIWrapperUIInputComponent.css");
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    protected function getTemplatePath(/*string*/ $name) : string
-    {
-        if ($name === "input.html") {
-            return __DIR__ . "/templates/" . $name;
-        } else {
-            // return parent::getTemplatePath($name);
-            return "src/UI/templates/default/Input/" . $name;
-        }
+        return $this->renderInput($tpl, $input);
     }
 }

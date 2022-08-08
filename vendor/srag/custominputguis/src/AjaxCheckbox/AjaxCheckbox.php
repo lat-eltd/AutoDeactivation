@@ -1,47 +1,28 @@
 <?php
 
-namespace srag\CustomInputGUIs\AutoDeactivation\CheckboxInputGUI;
+namespace srag\CustomInputGUIs\AutoDeactivation\AjaxCheckbox;
 
 use srag\CustomInputGUIs\AutoDeactivation\Template\Template;
 use srag\CustomInputGUIs\AutoDeactivation\Waiter\Waiter;
 use srag\DIC\AutoDeactivation\DICTrait;
+use srag\DIC\AutoDeactivation\Plugin\PluginInterface;
+use srag\DIC\AutoDeactivation\Version\PluginVersionParameter;
 
 /**
  * Class AjaxCheckbox
  *
- * @package srag\CustomInputGUIs\AutoDeactivation\CheckboxInputGUI
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
+ * @package srag\CustomInputGUIs\AutoDeactivation\AjaxCheckbox
  */
 class AjaxCheckbox
 {
 
     use DICTrait;
+
     const GET_PARAM_CHECKED = "checked";
     /**
      * @var bool
      */
     protected static $init = false;
-
-
-    /**
-     *
-     */
-    public static function init()/*: void*/
-    {
-        if (self::$init === false) {
-            self::$init = true;
-
-            Waiter::init(Waiter::TYPE_WAITER);
-
-            $dir = __DIR__;
-            $dir = "./" . substr($dir, strpos($dir, "/Customizing/") + 1);
-
-            self::dic()->ui()->mainTemplate()->addJavaScript($dir . "/js/ajax_checkbox.min.js");
-        }
-    }
-
-
     /**
      * @var string
      */
@@ -54,10 +35,35 @@ class AjaxCheckbox
 
     /**
      * AjaxCheckbox constructor
+     *
+     * @param PluginInterface|null $plugin
      */
-    public function __construct()
+    public function __construct(/*?*/ PluginInterface $plugin = null)
     {
-        self::init();
+        self::init($plugin);
+    }
+
+
+    /**
+     * @param PluginInterface|null $plugin
+     */
+    public static function init(/*?*/ PluginInterface $plugin = null) : void
+    {
+        if (self::$init === false) {
+            self::$init = true;
+
+            $version_parameter = PluginVersionParameter::getInstance();
+            if ($plugin !== null) {
+                $version_parameter = $version_parameter->withPlugin($plugin);
+            }
+
+            Waiter::init(Waiter::TYPE_WAITER, null, $plugin);
+
+            $dir = __DIR__;
+            $dir = "./" . substr($dir, strpos($dir, "/Customizing/") + 1);
+
+            self::dic()->ui()->mainTemplate()->addJavaScript($version_parameter->appendToUrl($dir . "/js/ajax_checkbox.min.js", $dir . "/js/ajax_checkbox.js"));
+        }
     }
 
 
