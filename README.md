@@ -6,7 +6,7 @@ This plugin introduces a cron job which deactivates unused user accounts, sendin
 
 ### Requirements
 
-* ILIAS 5.3.x / 5.4.x
+* ILIAS 6.x / 7.x
 * PHP >=7.0
 
 ### Installing
