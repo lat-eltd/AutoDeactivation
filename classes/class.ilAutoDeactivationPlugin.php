@@ -2,6 +2,8 @@
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
+use ILIAS\DI\Container;
+use srag\CustomInputGUIs\AutoDeactivation\Loader\CustomInputGUIsLoaderDetector;
 use srag\DIC\AutoDeactivation\Exception\DICException;
 use srag\Notifications4Plugin\AutoDeactivation\Utils\Notifications4PluginTrait;
 use srag\Plugins\AutoDeactivation\Utils\AutoDeactivationTrait;
@@ -122,5 +124,17 @@ class ilAutoDeactivationPlugin extends ilCronHookPlugin
     protected function deleteData()/*: void*/
     {
         self::autoDeactivation()->dropTables();
+    }
+
+
+    protected function shouldUseOneUpdateStepOnly() : bool
+    {
+       return false;
+    }
+
+
+    public function exchangeUIRendererAfterInitialization(Container $dic) : Closure
+    {
+        return CustomInputGUIsLoaderDetector::exchangeUIRendererAfterInitialization();
     }
 }
