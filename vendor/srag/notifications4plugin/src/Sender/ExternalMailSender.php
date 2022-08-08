@@ -13,15 +13,33 @@ use srag\Notifications4Plugin\AutoDeactivation\Utils\Notifications4PluginTrait;
  * Sends the notification to an external E-Mail address using the ILIAS mailer class
  *
  * @package srag\Notifications4Plugin\AutoDeactivation\Sender
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
- * @author  Stefan Wanzenried <sw@studer-raimann.ch>
  */
 class ExternalMailSender implements Sender
 {
 
     use DICTrait;
     use Notifications4PluginTrait;
+
+    /**
+     * @var array
+     */
+    protected $attachments = [];
+    /**
+     * @var string|array
+     */
+    protected $bcc = [];
+    /**
+     * @var string|array
+     */
+    protected $cc = [];
+    /**
+     * @var string
+     */
+    protected $from = "";
+    /**
+     * @var ilMimeMail
+     */
+    protected $mailer;
     /**
      * @var string
      */
@@ -31,29 +49,9 @@ class ExternalMailSender implements Sender
      */
     protected $subject = "";
     /**
-     * @var string
-     */
-    protected $from = "";
-    /**
      * @var string|array
      */
     protected $to;
-    /**
-     * @var ilMimeMail
-     */
-    protected $mailer;
-    /**
-     * @var array
-     */
-    protected $attachments = [];
-    /**
-     * @var string|array
-     */
-    protected $cc = [];
-    /**
-     * @var string|array
-     */
-    protected $bcc = [];
 
 
     /**
@@ -67,35 +65,6 @@ class ExternalMailSender implements Sender
         $this->from = $from;
         $this->to = $to;
         $this->mailer = new ilMimeMail();
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function send()/*: void*/
-    {
-        $from = ($this->from) ? $this->from : self::dic()->ilias()->getSetting("mail_external_sender_noreply");
-        $this->mailer->From(self::dic()->mailMimeSenderFactory()->userByEmailAddress($from));
-
-        $this->mailer->To($this->to);
-
-        $this->mailer->Cc($this->cc);
-        $this->mailer->Bcc($this->bcc);
-
-        $this->mailer->Subject($this->subject);
-
-        $this->mailer->Body($this->message);
-
-        foreach ($this->attachments as $attachment) {
-            $this->mailer->Attach($attachment);
-        }
-
-        $sent = $this->mailer->Send();
-
-        if (!$sent) {
-            throw new Notifications4PluginException("Mailer not returns true");
-        }
     }
 
 
@@ -117,22 +86,38 @@ class ExternalMailSender implements Sender
 
 
     /**
-     * @inheritDoc
+     * @return array|string
      */
-    public function setSubject($subject)
+    public function getBcc()
     {
-        $this->subject = $subject;
-
-        return $this;
+        return $this->bcc;
     }
 
 
     /**
      * @inheritDoc
      */
-    public function setMessage($message)
+    public function setBcc($bcc)
     {
-        $this->message = $message;
+        $this->bcc = $bcc;
+    }
+
+
+    /**
+     * @return array|string
+     */
+    public function getCc()
+    {
+        return $this->cc;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function setCc($cc)
+    {
+        $this->cc = $cc;
 
         return $this;
     }
@@ -179,44 +164,6 @@ class ExternalMailSender implements Sender
 
 
     /**
-     * @return array|string
-     */
-    public function getCc()
-    {
-        return $this->cc;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function setCc($cc)
-    {
-        $this->cc = $cc;
-
-        return $this;
-    }
-
-
-    /**
-     * @return array|string
-     */
-    public function getBcc()
-    {
-        return $this->bcc;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function setBcc($bcc)
-    {
-        $this->bcc = $bcc;
-    }
-
-
-    /**
      * @inheritDoc
      */
     public function reset()
@@ -229,6 +176,57 @@ class ExternalMailSender implements Sender
         $this->cc = [];
         $this->bcc = [];
         $this->mailer = new ilMimeMail();
+
+        return $this;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function send() : void
+    {
+        $from = ($this->from) ? $this->from : self::dic()->ilias()->getSetting("mail_external_sender_noreply");
+        $this->mailer->From(self::dic()->mailMimeSenderFactory()->userByEmailAddress($from));
+
+        $this->mailer->To($this->to);
+
+        $this->mailer->Cc($this->cc);
+        $this->mailer->Bcc($this->bcc);
+
+        $this->mailer->Subject($this->subject);
+
+        $this->mailer->Body($this->message);
+
+        foreach ($this->attachments as $attachment) {
+            $this->mailer->Attach($attachment);
+        }
+
+        $sent = $this->mailer->Send();
+
+        if (!$sent) {
+            throw new Notifications4PluginException("Mailer not returns true");
+        }
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+
+        return $this;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function setSubject($subject)
+    {
+        $this->subject = $subject;
 
         return $this;
     }

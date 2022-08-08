@@ -9,7 +9,9 @@ use ilAsqFactory;
 use ilAuthSession;
 use ilBenchmark;
 use ilBookingManagerService;
+use ilBookingReservationDBRepositoryFactory;
 use ilBrowser;
+use ilCertificateActiveValidator;
 use ilComponentLogger;
 use ilConditionService;
 use ilCtrl;
@@ -17,9 +19,10 @@ use ilCtrlStructureReader;
 use ilDBInterface;
 use ilErrorHandling;
 use ilExerciseFactory;
-use ilGlobalTemplateInterface;
+use ilFavouritesDBRepository;
 use ilHelpGUI;
 use ILIAS;
+use ILIAS\Data\Factory as DataFactory;
 use ILIAS\DI\BackgroundTaskServices;
 use ILIAS\DI\Container;
 use ILIAS\DI\HTTPServices;
@@ -30,6 +33,13 @@ use ILIAS\Filesystem\Filesystems;
 use ILIAS\FileUpload\FileUpload;
 use ILIAS\GlobalScreen\Services as GlobalScreenService;
 use ILIAS\Refinery\Factory as RefineryFactory;
+use ILIAS\ResourceStorage\Services as ResourceStorageServices;
+use ILIAS\Skill\Service\SkillService;
+use ILIAS\UI\Implementation\Render\ImagePathResolver;
+use ILIAS\UI\Implementation\Render\JavaScriptBinding;
+use ILIAS\UI\Implementation\Render\Loader;
+use ILIAS\UI\Implementation\Render\ResourceRegistry;
+use ILIAS\UI\Implementation\Render\TemplateFactory;
 use ilIniFile;
 use ilLanguage;
 use ilLearningHistoryService;
@@ -38,16 +48,15 @@ use ilLoggerFactory;
 use ilMailMimeSenderFactory;
 use ilMailMimeTransportFactory;
 use ilMainMenuGUI;
+use ilMMItemRepository;
 use ilNavigationHistory;
 use ilNewsService;
 use ilObjectDataCache;
 use ilObjectDefinition;
 use ilObjectService;
+use ilObjUseBookDBRepository;
 use ilObjUser;
 use ilPluginAdmin;
-use ilRbacAdmin;
-use ilRbacReview;
-use ilRbacSystem;
 use ilSetting;
 use ilStyleDefinition;
 use ilTabsGUI;
@@ -57,16 +66,21 @@ use ilTree;
 use ilUIService;
 use Session;
 use srag\DIC\AutoDeactivation\DIC\AbstractDIC;
+use srag\DIC\AutoDeactivation\Exception\DICException;
 
 /**
  * Class ILIAS60DIC
  *
  * @package srag\DIC\AutoDeactivation\DIC\Implementation
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 final class ILIAS60DIC extends AbstractDIC
 {
+
+    /**
+     * @var ilMMItemRepository|null
+     */
+    protected $main_menu_item = null;
+
 
     /**
      * @inheritDoc
@@ -125,9 +139,36 @@ final class ILIAS60DIC extends AbstractDIC
     /**
      * @inheritDoc
      */
+    public function bookingObjUseBook() : ilObjUseBookDBRepository
+    {
+        return new ilObjUseBookDBRepository($this->database());
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function bookingReservation() : ilBookingReservationDBRepositoryFactory
+    {
+        return new ilBookingReservationDBRepositoryFactory();
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     public function browser() : ilBrowser
     {
         return $this->dic["ilBrowser"];
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function certificateActiveValidator() : ilCertificateActiveValidator
+    {
+        return new ilCertificateActiveValidator();
     }
 
 
@@ -179,9 +220,27 @@ final class ILIAS60DIC extends AbstractDIC
     /**
      * @inheritDoc
      */
+    public function data() : DataFactory
+    {
+        return new DataFactory();
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     public function databaseCore() : ilDBInterface
     {
         return $this->dic->database();
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function &dic() : Container
+    {
+        return $this->dic;
     }
 
 
@@ -200,6 +259,15 @@ final class ILIAS60DIC extends AbstractDIC
     public function exercise() : ilExerciseFactory
     {
         return $this->dic->exercise();
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function favourites() : ilFavouritesDBRepository
+    {
+        return new ilFavouritesDBRepository();
     }
 
 
@@ -263,6 +331,24 @@ final class ILIAS60DIC extends AbstractDIC
     public function iliasIni() : ilIniFile
     {
         return $this->dic->iliasIni();
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function imagePathResolver() : ImagePathResolver
+    {
+        throw new DICException("ImagePathResolver not exists in ILIAS 6 or below!");
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function javaScriptBinding() : JavaScriptBinding
+    {
+        return $this->dic["ui.javascript_binding"];
     }
 
 
@@ -349,12 +435,14 @@ final class ILIAS60DIC extends AbstractDIC
 
     /**
      * @inheritDoc
-     *
-     * @deprecated Please use `self::dic()->ui()->mainTemplate()`
      */
-    public function mainTemplate() : ilGlobalTemplateInterface
+    public function mainMenuItem() : ilMMItemRepository
     {
-        return $this->dic->ui()->mainTemplate();
+        if ($this->main_menu_item === null) {
+            $this->main_menu_item = new ilMMItemRepository();
+        }
+
+        return $this->main_menu_item;
     }
 
 
@@ -423,43 +511,46 @@ final class ILIAS60DIC extends AbstractDIC
 
     /**
      * @inheritDoc
-     *
-     * @deprecated Please use `self::dic()->rba()->admin()`
-     */
-    public function rbacadmin() : ilRbacAdmin
-    {
-        return $this->rbac()->admin();
-    }
-
-
-    /**
-     * @inheritDoc
-     *
-     * @deprecated Please use `self::dic()->rba()->review()`
-     */
-    public function rbacreview() : ilRbacReview
-    {
-        return $this->rbac()->review();
-    }
-
-
-    /**
-     * @inheritDoc
-     *
-     * @deprecated Please use `self::dic()->rba()->system()`
-     */
-    public function rbacsystem() : ilRbacSystem
-    {
-        return $this->rbac()->system();
-    }
-
-
-    /**
-     * @inheritDoc
      */
     public function refinery() : RefineryFactory
     {
         return $this->dic->refinery();
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function rendererLoader() : Loader
+    {
+        return $this->dic["ui.component_renderer_loader"];
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function repositoryTree() : ilTree
+    {
+        return $this->dic->repositoryTree();
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function resourceRegistry() : ResourceRegistry
+    {
+        return $this->dic["ui.resource_registry"];
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function resourceStorage() : ResourceStorageServices
+    {
+        throw new DICException("ResourceStorageServices not exists in ILIAS 6 or below!");
     }
 
 
@@ -478,6 +569,15 @@ final class ILIAS60DIC extends AbstractDIC
     public function settings() : ilSetting
     {
         return $this->dic->settings();
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function skills() : SkillService
+    {
+        throw new DICException("SkillService not exists in ILIAS 6 or below!");
     }
 
 
@@ -511,18 +611,18 @@ final class ILIAS60DIC extends AbstractDIC
     /**
      * @inheritDoc
      */
-    public function toolbar() : ilToolbarGUI
+    public function templateFactory() : TemplateFactory
     {
-        return $this->dic->toolbar();
+        return $this->dic["ui.template_factory"];
     }
 
 
     /**
      * @inheritDoc
      */
-    public function tree() : ilTree
+    public function toolbar() : ilToolbarGUI
     {
-        return $this->dic->repositoryTree();
+        return $this->dic->toolbar();
     }
 
 
@@ -559,14 +659,5 @@ final class ILIAS60DIC extends AbstractDIC
     public function user() : ilObjUser
     {
         return $this->dic->user();
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function &dic() : Container
-    {
-        return $this->dic;
     }
 }

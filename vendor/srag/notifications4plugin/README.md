@@ -1,18 +1,25 @@
-This library offers a quick and easy way to create and send notifications in any language. The notifications are usually configured in the ui of Notifications4Plugin and can then be sent for instance as an email by other plugins dynamic
+# srag/notifications4plugin Library for ILIAS Plugins
+
+This library offers a quick and easy way to create and send notifications in any language. The notifications are usually configured in the config screen of Notifications4Plugin and can then be sent for instance as an email by other plugins dynamic
+
+This project is licensed under the GPL-3.0-only license
 
 The text of the notifications is parsed by default with the [Twig template engine!](https://twig.symfony.com/doc/1.x/templates.html), meaning the developer can replace placeholders and use if statements and loops
 
 The development interface offers easy methods to create, modify and send notifications
 
-### Usage
+## Usage
 
-#### Composer
+### Composer
+
 First add the following to your `composer.json` file:
+
 ```json
 "require": {
   "srag/notifications4plugin": ">=0.1.0"
 },
 ```
+
 And run a `composer install`.
 
 If you deliver your plugin, the plugin has it's own copy of this library and the user doesn't need to install the library.
@@ -21,8 +28,25 @@ Tip: Because of multiple autoloaders of plugins, it could be, that different ver
 
 So I recommand to use [srag/librariesnamespacechanger](https://packagist.org/packages/srag/librariesnamespacechanger) in your plugin.
 
-#### Using trait
+## Twig PHP 7.4 patch
+
+For make twig work with PHP 7.4, you may need to patch it (At your own risk)
+
+At the follow in your `composer.json`
+
+```json
+  ...
+  "pre-autoload-dump": [
+    ...,
+    "vendor/srag/notifications4plugin/bin/twig_php74_patch.php"
+    ]
+  ...
+```
+
+## Using trait
+
 Your class in this you want to use Notifications4Plugin needs to use the trait `Notifications4PluginTrait`
+
 ```php
 ...
 use srag\Notifications4Plugin\AutoDeactivation\x\Utils\Notifications4PluginTrait;
@@ -33,8 +57,10 @@ use Notifications4PluginTrait;
 ...
 ```
 
-#### Notification ActiveRecord
+## Notification ActiveRecord
+
 First you need to init the `Notification` and `NotificationLanguage` active record classes with your own table name prefix. Please add this very early in your plugin code
+
 ```php
 self::notifications4plugin()->withTableNamePrefix(ilXPlugin::PLUGIN_ID)->withPlugin(self::plugin())->withPlaceholderTypes([
     'user' => 'object ' . ilObjUser::class,
@@ -44,6 +70,7 @@ self::notifications4plugin()->withTableNamePrefix(ilXPlugin::PLUGIN_ID)->withPlu
 ```
 
 Add an update step to your `dbupdate.php`
+
 ```php
 ...
 <#x>
@@ -53,11 +80,13 @@ Add an update step to your `dbupdate.php`
 ```
 
 and not forget to add an uninstaller step in your plugin class too
+
 ```php
 self::notifications4plugin()->notifications()->dropTables();
 ```
 
-#### Ctrl classes
+## Ctrl classes
+
 ```php
 ...
 /**
@@ -71,14 +100,16 @@ class x
 }
 ```
 
-#### Languages
+## Languages
+
 Expand you plugin class for installing languages of the library to your plugin
+
 ```php
 ...
 	/**
      * @inheritDoc
      */
-    public function updateLanguages(/*?array*/ $a_lang_keys = null)/*:void*/ {
+    public function updateLanguages(/*?array*/ $a_lang_keys = null):void {
 		parent::updateLanguages($a_lang_keys);
 
 		self::notifications4plugin()->installLanguages();
@@ -86,29 +117,34 @@ Expand you plugin class for installing languages of the library to your plugin
 ...
 ```
 
-#### Migrate from old global plugin
-Add to your `dbupdate.php` like:
-```php
-if (\srag\Notifications4Plugin\AutoDeactivation\x\Notification\Repository::getInstance()->migrateFromOldGlobalPlugin(x::TEMPLATE_NAME) === null) {
+## Migrate from old global plugin
 
-	$notification = \srag\Notifications4Plugin\AutoDeactivation\x\Notification\Repository::getInstance()->factory()->newInstance();
+Add to your `dbupdate.php` like:
+
+```php
+use srag\Notifications4Plugin\AutoDeactivation\x\Notification\Repository;if (Repository::getInstance()->migrateFromOldGlobalPlugin(x::TEMPLATE_NAME) === null) {
+
+	$notification = Repository::getInstance()->factory()->newInstance();
 
 	$notification->setName(x::TEMPLATE_NAME);
 
 	// TODO: Fill $notification with your default values
 
-	\srag\Notifications4Plugin\AutoDeactivation\x\Notification\Repository::getInstance()->storeNotification($notification);
+	Repository::getInstance()->storeNotification($notification);
 }
 ```
 
-##### Get notification(s)
+## Get notification(s)
+
 Main
+
 ```php
 // Get the notification by name
 $notification = self::notifications4plugin()->notifications()->getNotificationByName(self::MY_UNIQUE_NAME);
-
 ```
+
 Other
+
 ```php
 // Get the notification by id
 $notification = self::notifications4plugin()->notifications()->getNotificationById(self::MY_UNIQUE_ID);
@@ -117,7 +153,8 @@ $notification = self::notifications4plugin()->notifications()->getNotificationBy
 $notifications = self::notifications4plugin()->notifications()->getNotifications();
 ```
 
-##### Send a notification
+## Send a notification
+
 ```php
 // Send the notification as external mail
 $sender = self::notifications4plugin()->sender()->factory()->externalMail('from_email', 'to_email');
@@ -146,7 +183,8 @@ self::notifications4plugin()->sender()->send($sender, $notification, $placeholde
 self::notifications4plugin()->sender()->send($sender, $notification, $placeholders, 'de');
 ```
 
-##### Create a notification
+## Create a notification
+
 ```php
 $notification = self::notifications4plugin()->notifications()->factory()->newInstance();
 
@@ -164,17 +202,20 @@ $notification->setText('Sie sind nun Mitglied in folgendem Kurs {{ course.getTit
 self::notifications4plugin()->notifications()->storeNotification($notification);
 ```
 
-##### Duplicate a notification
+## Duplicate a notification
+
 ```php
 $duplicated_notification = self::notifications4plugin()->notifications()->duplicateNotification($notification);
 ```
 
-##### Delete a notification
+## Delete a notification
+
 ```php
 self::notifications4plugin()->notifications()->deleteNotification($notification);
 ```
 
-##### Get parsed subject and text of a notification
+## Get parsed subject and text of a notification
+
 You can get the parsed subject and text from a notification, for example to display it on screen.
 
 ```php
@@ -189,21 +230,17 @@ $subject = self::notifications4plugin()->parser()->parseSubject($parser, $notifi
 $text = self::notifications4plugin()->parser()->parseText($parser, $notification, $placeholders);
 ```
 
-##### Implement a custom parser
+## Implement a custom parser
+
 Your class must extends `srag\Notifications4Plugin\AutoDeactivation\x\Parser\AbstractParser`
 
 You can add it
+
 ```php
 self::notifications4plugin()->parser()->addParser(new CustomParser());
 ```
 
-### Requirements
-* ILIAS 5.3 or ILIAS 5.4
-* PHP >=7.0
+## Requirements
 
-### Adjustment suggestions
-* External users can report suggestions and bugs at https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_PLNOTIFICATION
-* Adjustment suggestions by pull requests via github
-* Customer of studer + raimann ag: 
-	* Adjustment suggestions which are not yet worked out in detail by Jira tasks under https://jira.studer-raimann.ch/projects/PLNOTIFICATION
-	* Bug reports under https://jira.studer-raimann.ch/projects/PLNOTIFICATION
+* ILIAS 6.0 - 7.999
+* PHP >=7.2

@@ -5,9 +5,8 @@ namespace srag\DIC\AutoDeactivation;
 use ilLogLevel;
 use ilPlugin;
 use srag\DIC\AutoDeactivation\DIC\DICInterface;
-use srag\DIC\AutoDeactivation\DIC\Implementation\ILIAS53DIC;
-use srag\DIC\AutoDeactivation\DIC\Implementation\ILIAS54DIC;
 use srag\DIC\AutoDeactivation\DIC\Implementation\ILIAS60DIC;
+use srag\DIC\AutoDeactivation\DIC\Implementation\ILIAS70DIC;
 use srag\DIC\AutoDeactivation\Exception\DICException;
 use srag\DIC\AutoDeactivation\Output\Output;
 use srag\DIC\AutoDeactivation\Output\OutputInterface;
@@ -20,8 +19,6 @@ use srag\DIC\AutoDeactivation\Version\VersionInterface;
  * Class DICStatic
  *
  * @package srag\DIC\AutoDeactivation
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 final class DICStatic implements DICStaticInterface
 {
@@ -45,16 +42,11 @@ final class DICStatic implements DICStaticInterface
 
 
     /**
-     * @inheritDoc
-     *
-     * @deprecated
+     * DICStatic constructor
      */
-    public static function clearCache()/*: void*/
+    private function __construct()
     {
-        self::$dic = null;
-        self::$output = null;
-        self::$plugins = [];
-        self::$version = null;
+
     }
 
 
@@ -65,23 +57,17 @@ final class DICStatic implements DICStaticInterface
     {
         if (self::$dic === null) {
             switch (true) {
-                case (self::version()->isLower(VersionInterface::ILIAS_VERSION_5_3)):
+                case (self::version()->isLower(VersionInterface::ILIAS_VERSION_6)):
                     throw new DICException("DIC not supports ILIAS " . self::version()->getILIASVersion() . " anymore!");
-                    break;
 
-                case (self::version()->isLower(VersionInterface::ILIAS_VERSION_5_4)):
+                case (self::version()->isLower(VersionInterface::ILIAS_VERSION_7)):
                     global $DIC;
-                    self::$dic = new ILIAS53DIC($DIC);
-                    break;
-
-                case (self::version()->isLower(VersionInterface::ILIAS_VERSION_6_0)):
-                    global $DIC;
-                    self::$dic = new ILIAS54DIC($DIC);
+                    self::$dic = new ILIAS60DIC($DIC);
                     break;
 
                 default:
                     global $DIC;
-                    self::$dic = new ILIAS60DIC($DIC);
+                    self::$dic = new ILIAS70DIC($DIC);
                     break;
             }
         }
@@ -142,14 +128,5 @@ final class DICStatic implements DICStaticInterface
         }
 
         return self::$version;
-    }
-
-
-    /**
-     * DICStatic constructor
-     */
-    private function __construct()
-    {
-
     }
 }

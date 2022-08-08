@@ -9,18 +9,26 @@ use srag\Notifications4Plugin\AutoDeactivation\Utils\Notifications4PluginTrait;
  * Class Factory
  *
  * @package srag\Notifications4Plugin\AutoDeactivation\Sender
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 final class Factory implements FactoryInterface
 {
 
     use DICTrait;
     use Notifications4PluginTrait;
+
     /**
      * @var FactoryInterface|null
      */
     protected static $instance = null;
+
+
+    /**
+     * Factory constructor
+     */
+    private function __construct()
+    {
+
+    }
 
 
     /**
@@ -33,15 +41,6 @@ final class Factory implements FactoryInterface
         }
 
         return self::$instance;
-    }
-
-
-    /**
-     * Factory constructor
-     */
-    private function __construct()
-    {
-
     }
 
 

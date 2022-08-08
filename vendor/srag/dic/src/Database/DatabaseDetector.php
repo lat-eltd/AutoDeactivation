@@ -15,8 +15,6 @@ use stdClass;
  * Class DatabaseDetector
  *
  * @package srag\DIC\AutoDeactivation\Database
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class DatabaseDetector extends AbstractILIASDatabaseDetector
 {
@@ -51,7 +49,7 @@ class DatabaseDetector extends AbstractILIASDatabaseDetector
     /**
      * @inheritDoc
      */
-    public function createAutoIncrement(string $table_name, string $field)/*: void*/
+    public function createAutoIncrement(string $table_name, string $field) : void
     {
         $table_name_q = $this->quoteIdentifier($table_name);
         $field_q = $this->quoteIdentifier($field);
@@ -76,7 +74,27 @@ class DatabaseDetector extends AbstractILIASDatabaseDetector
     /**
      * @inheritDoc
      */
-    public function dropAutoIncrementTable(string $table_name)/*: void*/
+    public function createOrUpdateTable(string $table_name, array $columns, array $primary_columns) : void
+    {
+        if (!$this->tableExists($table_name)) {
+            $this->createTable($table_name, $columns);
+            if (!empty($primary_columns)) {
+                $this->addPrimaryKey($table_name, $primary_columns);
+            }
+        } else {
+            foreach ($columns as $column_name => $column) {
+                if (!$this->tableColumnExists($table_name, $column_name)) {
+                    $this->addTableColumn($table_name, $column_name, $column);
+                }
+            }
+        }
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function dropAutoIncrementTable(string $table_name) : void
     {
         $seq_name = $table_name . "_seq";
         $seq_name_q = $this->quoteIdentifier($seq_name);
@@ -114,7 +132,7 @@ class DatabaseDetector extends AbstractILIASDatabaseDetector
     /**
      * @inheritDoc
      */
-    public function fetchObjectCallback(ilDBStatement $stm, callable $callback)/*:?object*/
+    public function fetchObjectCallback(ilDBStatement $stm, callable $callback) : ?object
     {
         $data = $this->fetchObjectClass($stm, stdClass::class);
 
@@ -129,7 +147,7 @@ class DatabaseDetector extends AbstractILIASDatabaseDetector
     /**
      * @inheritDoc
      */
-    public function fetchObjectClass(ilDBStatement $stm, string $class_name)/*:?object*/
+    public function fetchObjectClass(ilDBStatement $stm, string $class_name) : ?object
     {
         $data = PdoStatementContextHelper::getPdoStatement($stm)->fetchObject($class_name);
 
@@ -144,7 +162,24 @@ class DatabaseDetector extends AbstractILIASDatabaseDetector
     /**
      * @inheritDoc
      */
-    public function resetAutoIncrement(string $table_name, string $field)/*: void*/
+    public function multipleInsert(string $table_name, array $columns, array $values) : void
+    {
+        if (empty($columns) || empty($values)) {
+            return;
+        }
+
+        $this->manipulate('INSERT INTO ' . $this->quoteIdentifier($table_name) . ' (' . implode(',', $columns) . ') VALUES ' . implode(',', array_map(function (array $values2) : string {
+                return '(' . implode(',', array_map(function (array $value) : string {
+                        return $this->quote($value[0], $value[1]);
+                    }, $values2)) . ')';
+            }, $values)));
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function resetAutoIncrement(string $table_name, string $field) : void
     {
         $table_name_q = $this->quoteIdentifier($table_name);
         $field_q = $this->quoteIdentifier($field);
